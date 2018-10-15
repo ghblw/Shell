@@ -42,10 +42,13 @@ function find_words() {
 }
 
 function filter() {    #判断文件是否为特殊类型文件进行过滤
-    a=(rmvb png img jpg jpeg gif md avi zip tar gz 7z)
+    a=(o rmvb png img jpg jpeg gif md avi zip tar gz 7z)
     suffix=`echo $1 | awk -F. '{print $NF}'`    #提取后缀
-    echo ${a[*]} | grep "suffix" > /dev/null
+    echo $suffix
+    echo ${a[*]} | grep "$suffix" > /dev/null
+
     if [[ $? -eq 0 ]]; then
+        echo $1"需要过滤"
         return 1    #需要过滤
     fi
     return 0    #不需要过滤
